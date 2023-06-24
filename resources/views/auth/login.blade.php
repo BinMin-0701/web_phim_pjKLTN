@@ -7,7 +7,12 @@
     <h2 class="title1">Đăng nhập</h2>
     <div class="widget-shadow">
       <div class="login-body">
-        <form action="{{route('login')}}" method="post">
+        @if(session('success'))
+        <div class="alert alert-success" role="alert">
+          {{ session('success') }}
+        </div>
+        @endif
+        <form action="" method="post">
           @csrf
           <input id="email" type="email" class="user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Nhập Email ..." autofocus>
           @error('email')
@@ -25,15 +30,15 @@
           <div class="row mb-0">
             <div class="offset-md-4">
               <button type="submit" class="btn btn-primary" style="display: block;width: 100%;">
-                {{ __('Login') }}
+                Đăng nhập
               </button>
             </div>
           </div>
-          <!-- <div class="registration">
-            <a class="" href="signup.html">
+          <div class="registration">
+            <a class="" href="./register">
               Tạo tài khoản mới
             </a>
-          </div> -->
+          </div>
         </form>
       </div>
     </div>

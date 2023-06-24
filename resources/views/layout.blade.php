@@ -139,8 +139,9 @@
 
             </ul>
           </div>
-          <ul class="nav navbar-nav navbar-left" style="background:#000;">
-            <li><a href="#" onclick="locphim()" style="color: #ffed4d;">Lọc Phim</a></li>
+          <ul class="nav navbar-nav navbar-left" >
+            <li><a href="#" onclick="locphim()">Lọc Phim</a></li>
+            <li><a href="./login" onclick="locphim()" style="color: #ffed4d;background:#000;">Đăng nhập</a></li>
           </ul>
         </div>
       </nav>

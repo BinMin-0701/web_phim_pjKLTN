@@ -7,6 +7,14 @@
       <div class="card">
         <div class="card-header">Quản Lý Link phim</div>
 
+        @if ($errors->any())
+        @foreach ($errors->all() as $err)
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {{$err}}!
+        </div>        
+        @endforeach
+        @endif
         <div class="card-body">
           @if (session('status'))
           <div class="alert alert-success" role="alert">
@@ -20,11 +28,11 @@
           @endif
           <div class="form-group">
             {!! Form::label('title', 'Tên link', []) !!}
-            {!! Form::text('title', isset($linkmovie) ? $linkmovie->title : '', ['class'=>'form-control','placeholder'=>'...','required']) !!}
+            {!! Form::text('title', isset($linkmovie) ? $linkmovie->title : '', ['class'=>'form-control','placeholder'=>'...']) !!}
           </div>
           <div class="form-group">
             {!! Form::label('description', 'Mô tả link', []) !!}
-            {!! Form::textarea('description', isset($linkmovie) ? $linkmovie->description : '', ['style'=>'resize:none', 'class'=>'form-control','placeholder'=>'...','id'=>'description','required']) !!}
+            {!! Form::textarea('description', isset($linkmovie) ? $linkmovie->description : '', ['style'=>'resize:none', 'class'=>'form-control','placeholder'=>'...','id'=>'description']) !!}
           </div>
           <div class="form-group">
             {!! Form::label('status', 'Trạng thái', []) !!}

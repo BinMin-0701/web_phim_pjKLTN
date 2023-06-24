@@ -40,7 +40,19 @@ class EpisodeController extends Controller
    */
   public function store(Request $request)
   {
-    $data = $request->all();
+    $data = $request->validate(
+      [
+        'movie_id' => 'required',
+        'link' => 'required',
+        'episode' => 'required|unique:episodes',
+        'linkserver' => 'required',
+      ],
+      [
+        'episode.unique' => 'Tập phim này đã tồn tại!',
+        'slug.required' => 'Slug trống',
+        'link.required' => 'Link phim không được để trống',
+      ]
+    );
     $episode = new Episode();
     $episode->movie_id = $data['movie_id'];
     $episode->linkphim = $data['link'];
@@ -49,7 +61,8 @@ class EpisodeController extends Controller
     $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
     $episode->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
     $episode->save();
-    return redirect()->to('episode');
+    toastr()->success('Thêm thành công.', 'Thành công');
+    return redirect()->to('add-episode/'.$episode->movie_id);
   }
 
   /**
@@ -95,6 +108,7 @@ class EpisodeController extends Controller
     $episode->created_at = Carbon::now('Asia/Ho_Chi_Minh');
     $episode->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
     $episode->save();
+    toastr()->success('Cập nhật thành công.', 'Thành công');
     return redirect()->to('add-episode/'.$episode->movie_id);
   }
 
@@ -107,6 +121,7 @@ class EpisodeController extends Controller
   public function destroy($id)
   {
     $episode = Episode::find($id)->delete();
+    toastr()->success('Xóa thành công.', 'Thành công');
     return redirect()->to('episode');
 
   }

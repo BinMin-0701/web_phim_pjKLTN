@@ -36,13 +36,27 @@ class CategoryController extends Controller
    */
   public function store(Request $request)
   {
-    $data = $request->all();
+    $data = $request->validate(
+      [
+        'title' => 'required|unique:categories|max:255',
+        'slug' => 'required',
+        'description' => 'required|max:255',
+        'status' => 'required',
+      ],
+      [
+        'title.unique' => 'Danh mục này đã tồn tại!',
+        'slug.required' => 'Đường dẫn trống!',
+        'title.required' => 'Tên Danh mục không được để trống',
+        'description.required' => 'Mô tả không được bỏ trống',
+      ]
+    );
     $category = new Category();
     $category->title = $data['title'];
     $category->slug = $data['slug'];
     $category->description = $data['description'];
     $category->status = $data['status'];
     $category->save();
+    toastr()->success('Thêm Danh mục thành công.', 'Thành công');
     return redirect()->route('category.index');
   }
 
@@ -79,13 +93,27 @@ class CategoryController extends Controller
    */
   public function update(Request $request, $id)
   {
-    $data = $request->all();
+    $data = $request->validate(
+      [
+        'title' => 'required|max:255',
+        'slug' => 'required',
+        'description' => 'required|max:255',
+        'status' => 'required',
+      ],
+      [
+        'title.unique' => 'Danh mục này đã tồn tại!',
+        'slug.required' => 'Đường dẫn trống!',
+        'title.required' => 'Tên Danh mục không được để trống',
+        'description.required' => 'Mô tả không được bỏ trống',
+      ]
+    );
     $category = Category::find($id);
     $category->title = $data['title'];
     $category->slug = $data['slug'];
     $category->description = $data['description'];
     $category->status = $data['status'];
     $category->save();
+    toastr()->success('Cập nhật Danh mục thành công.', 'Thành công');
     return redirect()->route('category.index');
   }
 
@@ -98,6 +126,7 @@ class CategoryController extends Controller
   public function destroy($id)
   {
     Category::find($id)->delete();
+    toastr()->success('Xóa Danh mục thành công.', 'Thành công');
     return redirect()->back();
   }
   public function resorting(Request  $request)

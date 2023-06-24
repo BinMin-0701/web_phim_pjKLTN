@@ -6,7 +6,15 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">Quản Lý Danh Mục</div>
-
+        @if ($errors->any())
+        @foreach ($errors->all() as $err)
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {{$err}}!
+        </div>
+        @endforeach
+        @endif
+        
         <div class="card-body">
           @if (session('status'))
           <div class="alert alert-success" role="alert">

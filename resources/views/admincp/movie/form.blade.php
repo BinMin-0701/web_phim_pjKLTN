@@ -7,7 +7,14 @@
       <div class="card">
         <a href="{{route('movie.index')}}" class="btn btn-primary">Liệt Kê Danh Sách Phim</a>
         <div class="card-header">Quản Lý Phim</div>
-
+        @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        @foreach ($errors->all() as $err)
+          {{$err}}!</br>
+          @endforeach
+        </div>
+        @endif  
         <div class="card-body">
           @if (session('status'))
           <div class="alert alert-success" role="alert">
@@ -21,13 +28,13 @@
           @endif
           <div class="form-group">
             {!! Form::label('title', 'Tên phim', []) !!}
-            {!! Form::text('title', isset($movie) ? $movie->title : '', ['class'=>'form-control','placeholder'=>'...','id'=>'slug','onkeyup'=>'ChangeToSlug()','required']) !!}
+            {!! Form::text('title', isset($movie) ? $movie->title : '', ['class'=>'form-control','placeholder'=>'...','id'=>'slug','onkeyup'=>'ChangeToSlug()']) !!}
           </div>
 
           <!-- Số tập -->
           <div class="form-group">
             {!! Form::label('sotap', 'Số tập phim', []) !!}
-            {!! Form::text('sotap', isset($movie) ? $movie->sotap : '', ['class'=>'form-control','placeholder'=>'...','required']) !!}
+            {!! Form::text('sotap', isset($movie) ? $movie->sotap : '', ['class'=>'form-control','placeholder'=>'...']) !!}
           </div>
 
           <!-- Thời lượng phim -->
@@ -37,7 +44,7 @@
           </div>
           <div class="form-group">
             {!! Form::label('tên tiếng anh', 'Tên tiếng anh', []) !!}
-            {!! Form::text('name_eng', isset($movie) ? $movie->name_eng : '', ['class'=>'form-control','placeholder'=>'...','required']) !!}
+            {!! Form::text('name_eng', isset($movie) ? $movie->name_eng : '', ['class'=>'form-control','placeholder'=>'...']) !!}
           </div>
 
           <!-- Trailer -->
@@ -53,7 +60,7 @@
           </div>
           <div class="form-group">
             {!! Form::label('description', 'Mô tả phim', []) !!}
-            {!! Form::textarea('description', isset($movie) ? $movie->description : '', ['style'=>'resize:none', 'class'=>'form-control','placeholder'=>'...','id'=>'description','required']) !!}
+            {!! Form::textarea('description', isset($movie) ? $movie->description : '', ['style'=>'resize:none', 'class'=>'form-control','placeholder'=>'...','id'=>'description']) !!}
           </div>
           <div class="form-group">
             {!! Form::label('tags', 'Từ khóa phim', []) !!}

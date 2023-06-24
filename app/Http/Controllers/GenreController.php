@@ -36,14 +36,28 @@ class GenreController extends Controller
    */
   public function store(Request $request)
   {
-    $data = $request->all();
+    $data = $request->validate(
+      [
+        'title' => 'required|unique:genres|max:255',
+        'slug' => 'required',
+        'description' => 'required|max:255',
+        'status' => 'required',
+      ],
+      [
+        'title.unique' => 'Thể loại này đã tồn tại!',
+        'slug.required' => 'Slug trống',
+        'title.required' => 'Tên Thể loại không được để trống',
+        'description.required' => 'Mô tả không được bỏ trống',
+      ]
+    );
     $genre = new Genre();
     $genre->title = $data['title'];
     $genre->slug = $data['slug'];
     $genre->description = $data['description'];
     $genre->status = $data['status'];
     $genre->save();
-    return redirect()->back();
+    toastr()->success('Thêm thành công.', 'Thành công');
+    return redirect()->route('genre.index');
   }
 
   /**
@@ -79,14 +93,28 @@ class GenreController extends Controller
    */
   public function update(Request $request, $id)
   {
-    $data = $request->all();
+    $data = $request->validate(
+      [
+        'title' => 'required|max:255',
+        'slug' => 'required',
+        'description' => 'required|max:255',
+        'status' => 'required',
+      ],
+      [
+        'title.unique' => 'Thể loại này đã tồn tại!',
+        'Slug.required' => 'Slug trống',
+        'title.required' => 'Tên Thể loại không được để trống',
+        'description.required' => 'Mô tả không được bỏ trống',
+      ]
+    );
     $genre = Genre::find($id);
     $genre->title = $data['title'];
     $genre->slug = $data['slug'];
     $genre->description = $data['description'];
     $genre->status = $data['status'];
     $genre->save();
-    return redirect()->back();
+    toastr()->success('Cập nhật thành công.', 'Thành công');
+    return redirect()->route('genre.index');
   }
 
   /**
@@ -98,6 +126,7 @@ class GenreController extends Controller
   public function destroy($id)
   {
     Genre::find($id)->delete();
+    toastr()->success('Xóa thành công.', 'Thành công');
     return redirect()->back();
   }
 }

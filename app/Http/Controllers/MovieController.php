@@ -162,7 +162,37 @@ class MovieController extends Controller
    */
   public function store(Request $request)
   {
-    $data = $request->all();
+    // $data = $request->all();
+    $data = $request->validate(
+      [
+        'title' => 'required|unique:movies|max:255',
+        'slug' => 'required',
+        'status' => 'required',
+        'name_eng' => 'required',
+        'genre' => 'required',
+        'trailer' => 'min:0',
+        'sotap' => 'required',
+        'tags' => '',
+        'phim_hot' => 'required',
+        'description' => '',
+        'resolution' => 'required',
+        'phude' => 'required',
+        'category_id' => 'required',
+        'country_id' => 'required',
+        'thoiluong' => '',
+        'image' => 'required',
+        'thuocphim' => '',
+      ],
+      [
+        'title.unique' => 'Phim đã tồn tại!',
+        'slug.required' => 'Đường dẫn trống!',
+        'title.required' => 'Tên Quốc gia không được để trống!',
+        'name_eng.required' => 'Tên tiếng anh không được để trống!',
+        'genre.required' => 'Thể loại không được để trống!',
+        'image.required' => 'Ảnh không được để trống!',
+        'sotap.required' => 'Số tập tối thiểu là 1!',
+      ]
+    );
     $movie = new Movie();
     $movie->title = $data['title'];
     $movie->trailer = $data['trailer'];
@@ -203,6 +233,7 @@ class MovieController extends Controller
 
     // Thêm nhiểu thể loại cho phim
     $movie->movie_genre()->attach($data['genre']);
+    toastr()->success('Thêm Phim thành công.', 'Thành công');
     return redirect()->route('movie.index');
   }
 
@@ -243,7 +274,36 @@ class MovieController extends Controller
    */
   public function update(Request $request, $id)
   {
-    $data = $request->all();
+    $data = $request->validate(
+      [
+        'title' => 'required|max:255',
+        'slug' => 'required',
+        'status' => 'required',
+        'name_eng' => 'required',
+        'genre' => 'required',
+        'trailer' => 'min:0',
+        'sotap' => 'required',
+        'tags' => '',
+        'phim_hot' => 'required',
+        'description' => '',
+        'resolution' => 'required',
+        'phude' => 'required',
+        'category_id' => 'required',
+        'country_id' => 'required',
+        'thoiluong' => '',
+        'image' => '',
+        'thuocphim' => '',
+      ],
+      [
+        'title.unique' => 'Phim đã tồn tại!',
+        'slug.required' => 'Đường dẫn trống!',
+        'title.required' => 'Tên Quốc gia không được để trống!',
+        'name_eng.required' => 'Tên tiếng anh không được để trống!',
+        'genre.required' => 'Thể loại không được để trống!',
+        // 'image.required' => 'Ảnh không được để trống!',
+        'sotap.required' => 'Số tập tối thiểu là 1!',
+      ]
+    );
     $movie = Movie::find($id);
     $movie->title = $data['title'];
     $movie->tags = $data['tags'];
@@ -260,7 +320,7 @@ class MovieController extends Controller
     $movie->thuocphim = $data['thuocphim'];
     // $movie->genre_id = $data['genre_id'];
     $movie->country_id = $data['country_id'];
-    $movie->ngaytao = Carbon::now('Asia/Ho_Chi_Minh');
+    $movie->ngaytao = $movie->ngaytao;
     $movie->ngaycapnhat = Carbon::now('Asia/Ho_Chi_Minh');
     $movie->thoiluong = $data['thoiluong'];
     
@@ -285,6 +345,7 @@ class MovieController extends Controller
 
     $movie->save();
     $movie->movie_genre()->sync($data['genre']);
+    toastr()->success('Cập nhật Phim thành công.', 'Thành công');
     return redirect()->back();
   }
 
@@ -306,6 +367,7 @@ class MovieController extends Controller
     Episode::whereIn('movie_id',[$movie->id])->delete();
 
     $movie->delete();
+    toastr()->success('Xóa Phim thành công.', 'Thành công');
     return redirect()->back();
   }
 }

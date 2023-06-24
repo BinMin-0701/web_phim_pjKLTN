@@ -44,7 +44,7 @@ class LinkMovieController extends Controller
       ],
       [
         'title.unique' => 'Link này đã tồn tại!',
-        'title.required' => 'Link chưa nhập',
+        'title.required' => 'Tên Link không được để trống',
         'description.required' => 'Mô tả không được bỏ trống',
       ]
     );
@@ -53,7 +53,7 @@ class LinkMovieController extends Controller
     $category->description = $data['description'];
     $category->status = $data['status'];
     $category->save();
-    // toastr()->success('Thành công','Thêm link phim thành công.');
+    toastr()->success('Thêm link phim thành công.','Thành công');
     return redirect()->route('linkmovie.index');
   }
 
@@ -97,7 +97,7 @@ class LinkMovieController extends Controller
       ],
       [
         'title.unique' => 'Link này đã tồn tại!',
-        'title.required' => 'Link chưa nhập',
+        'title.required' => 'Tên Link không được để trống',
         'description.required' => 'Mô tả không được bỏ trống',
       ]
     );
@@ -106,7 +106,7 @@ class LinkMovieController extends Controller
     $category->description = $data['description'];
     $category->status = $data['status'];
     $category->save();
-    // toastr()->success('Thành công','Thêm link phim thành công.');
+    toastr()->success('Cập nhật thành công.', 'Thành công');
     return redirect()->route('linkmovie.index');
   }
 
@@ -119,6 +119,7 @@ class LinkMovieController extends Controller
   public function destroy($id)
   {
     LinkMovie::find($id)->delete();
+    toastr()->success('Xóa thành công.', 'Thành công');
     return redirect()->back();
   }
 }

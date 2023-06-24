@@ -6,6 +6,14 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">Quản Lý Quốc Gia</div>
+        @if ($errors->any())
+        @foreach ($errors->all() as $err)
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {{$err}}!
+        </div>
+        @endforeach
+        @endif
 
         <div class="card-body">
           @if (session('status'))
@@ -20,7 +28,7 @@
           @endif
           <div class="form-group">
             {!! Form::label('title', 'Tên quốc gia', []) !!}
-            {!! Form::text('title', isset($country) ? $country->title : '', ['class'=>'form-control','placeholder'=>'...','id'=>'slug','onkeyup'=>'ChangeToSlug()','required']) !!}
+            {!! Form::text('title', isset($country) ? $country->title : '', ['class'=>'form-control','placeholder'=>'...','id'=>'slug','onkeyup'=>'ChangeToSlug()']) !!}
           </div>
           <div class="form-group">
             {!! Form::label('slug', 'Đường dẫn', []) !!}
@@ -28,7 +36,7 @@
           </div>
           <div class="form-group">
             {!! Form::label('description', 'Mô tả quốc gia', []) !!}
-            {!! Form::textarea('description', isset($country) ? $country->description : '', ['style'=>'resize:none', 'class'=>'form-control','placeholder'=>'...','id'=>'description','required']) !!}
+            {!! Form::textarea('description', isset($country) ? $country->description : '', ['style'=>'resize:none', 'class'=>'form-control','placeholder'=>'...','id'=>'description']) !!}
           </div>
           <div class="form-group">
             {!! Form::label('status', 'Trạng thái', []) !!}

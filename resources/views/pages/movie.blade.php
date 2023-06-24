@@ -132,17 +132,7 @@
                     {{$movie->count_views}} lượt xem
                   @endif
                 </li>
-                <li>
-                  <ul class="list-inline rating" title="Average Rating">
-                    @for($count=1; $count<=5; $count++) 
-                      @php 
-                        if($count<=$rating)
-                          $color='color:#ffcc00;' ; //mau vang
-                      else  $color='color:#ccc;' ; //mau xam 
-                    @endphp 
-                    <li title="star_rating" id="{{$movie->id}}-{{$count}}" data-index="{{$count}}" data-movie_id="{{$movie->id}}" data-rating="{{$rating}}" class="rating" style="cursor:pointer; {{$color}} font-size:30px;">&#9733;
-                </li>
-                @endfor
+                
               </ul>
               </li>
               </ul>

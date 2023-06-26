@@ -35,6 +35,7 @@ Route::get('/so-tap', [IndexController::class, 'episode'])->name('so-tap');
 Route::get('/nam/{year}', [IndexController::class, 'year']);
 Route::get('/tag/{tag}', [IndexController::class, 'tag']);
 Route::post('/add-rating', [IndexController::class, 'add_rating'])->name('add-rating');
+Route::get('/accout/{id}', [IndexController::class, 'accout'])->name('accout');
 
 //Đăng ký tài khoản
 Route::get('/register', [RegisterController::class, 'index']);

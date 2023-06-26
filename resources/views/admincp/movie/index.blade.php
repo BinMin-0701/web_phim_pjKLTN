@@ -126,8 +126,8 @@
             <td>
               {!! Form::select('topview', ['0'=>'Ngày','1'=>'Tuần','2'=>'Tháng'], isset($cate->topview) ? $cate->topview : '', ['class'=>'select-topview','id'=>$cate->id]) !!}
             </td>
-            <td>
-              {!! Form::open(['method'=>'DELETE','route'=>['movie.destroy',$cate->id],'onsubmit'=>'return confirm("Bạn có chắc muốn xóa?")']) !!}
+            <td style="    min-width: 135px;">
+              {!! Form::open(['method'=>'DELETE','route'=>['movie.destroy',$cate->id],'onsubmit'=>'return confirm("Bạn có chắc muốn xóa?")','style'=>'display: inline-block']) !!}
               {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
               {!! Form::close() !!}
               <a href="{{route('movie.edit',$cate->id)}}" class="btn btn-warning">Sửa</a>

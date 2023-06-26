@@ -11,7 +11,7 @@
   </div>
   @endforeach
   @endif
-  <div class="card-body">
+  <div class="card-body" style="padding-bottom: 3rem;">
     @if (session('status'))
     <div class="alert alert-success" role="alert">
       {{ session('status') }}
@@ -95,8 +95,8 @@
         Không hiển thị
         @endif
       </td>
-      <td>
-        {!! Form::open(['method'=>'DELETE','route'=>['episode.destroy',$episode->id],'onsubmit'=>'return confirm("Bạn có chắc muốn xóa?")']) !!}
+      <td style="min-width: 135px;">
+        {!! Form::open(['method'=>'DELETE','route'=>['episode.destroy',$episode->id],'onsubmit'=>'return confirm("Bạn có chắc muốn xóa?")','style'=>'display: inline-block;']) !!}
         {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
         {!! Form::close() !!}
         <a href="{{route('episode.edit',$episode->id)}}" class="btn btn-warning">Sửa</a>

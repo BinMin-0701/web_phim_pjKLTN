@@ -26,7 +26,7 @@
         Không hiển thị
         @endif
       </td>
-      <td>
+      <td style="display: flex; gap: 0.25rem;">
         {!! Form::open(['method'=>'DELETE','route'=>['country.destroy',$cate->id],'onsubmit'=>'return confirm("Bạn có chắc muốn xóa?")']) !!}
         {!! Form::submit('Xóa', ['class'=>'btn btn-danger']) !!}
         {!! Form::close() !!}

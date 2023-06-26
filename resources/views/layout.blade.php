@@ -145,6 +145,7 @@
             <li><a href="./login" style="color: #ffed4d;background:#000;">Đăng nhập</a></li>
             @else
             <li><a href="./logout_user" style="color: #ffed4d;background:#000;">{{ Auth::user()->name }} - Đăng xuất</a></li>
+            <li><a href="{{route('accout', Auth::user()->id)}}" style="color: #ffed4d;background:#000;">Tài khoản</a></li>
             @endif
           </ul>
         </div>

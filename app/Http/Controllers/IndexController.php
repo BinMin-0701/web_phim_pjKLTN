@@ -23,6 +23,7 @@ class IndexController extends Controller
     $genre = Genre::orderBy('id', 'DESC')->get();
     $country = Country::orderBy('id', 'DESC')->get();
     $category_home = Category::with('movie')->orderBy('id', 'DESC')->where('status', 1)->get();
+    // $topview = Movie::where('status', 1)->orderBy('ngaycapnhat', 'DESC')->withCount('episode')->get();
     return view('pages.home', compact('category', 'genre', 'country', 'category_home', 'phimhot', 'phimhot_sidebar'));
   }
   public function category($slug)
@@ -167,6 +168,14 @@ class IndexController extends Controller
   public function episode()
   {
     return view('pages.episode');
+  }
+
+  public function accout($id)
+  {
+    $category = Category::orderBy('position', 'ASC')->where('status', 1)->get();
+    $genre = Genre::orderBy('id', 'DESC')->get();
+    $country = Country::orderBy('id', 'DESC')->get();
+    return view('pages.accout', compact('category', 'genre', 'country'));
   }
 
   public function timkiem()

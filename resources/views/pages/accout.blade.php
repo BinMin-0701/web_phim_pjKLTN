@@ -23,9 +23,12 @@
   </div>
 
   <div class="button-upgrade-vip" style="padding: 0 2rem;">
-    @if (Auth::user()->level == 0)
-    <p>Để xem phim có phí, hãy nâng lên Thành viên Vip</p>
-    <a href="" class="btn btn-success">Nâng cấp tài khoản</a>
+    @if (Auth::user()->level == 1)
+    <form action="/pay_premium" method="post">
+      @csrf
+      <p>Để xem phim có phí, hãy nâng lên Thành viên Vip</p>
+      <button type="submit" class="btn btn-success">Nâng cấp tài khoản</button>
+    </form>
     @endif
   </div>
 </div>

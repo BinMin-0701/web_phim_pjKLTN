@@ -14,6 +14,7 @@ use App\Http\Controllers\LinkMovieController;
 use App\Http\Controllers\Auth\AdminLoginController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +36,7 @@ Route::get('/so-tap', [IndexController::class, 'episode'])->name('so-tap');
 Route::get('/nam/{year}', [IndexController::class, 'year']);
 Route::get('/tag/{tag}', [IndexController::class, 'tag']);
 Route::post('/add-rating', [IndexController::class, 'add_rating'])->name('add-rating');
-Route::get('/accout/{id}', [IndexController::class, 'accout'])->name('accout');
+Route::get('/accout/{id}', [IndexController::class, 'accout'])->name('accout')->middleware('CheckMemberLogin');
 
 //Đăng ký tài khoản
 Route::get('/register', [RegisterController::class, 'index']);
@@ -52,9 +53,11 @@ Auth::routes();
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login_home', [LoginController::class, 'post_login']);
 Route::get('/logout_user',[LoginController::class, 'logout_user']);
+Route::post('/pay_premium',[HomeController::class, 'pay_premium']);
+Route::get('/pages/result',[HomeController::class, 'result']);
+Route::get('/vnPayCheck', [HomeController::class, 'vnPayCheck']);
 
-
-//Đăng nhập admin
+//Đăng nhập admins
 Route::get('/admin/login', [AdminLoginController::class, 'index']);
 Route::post('/admin/login', [AdminLoginController::class, 'post_login']);
 

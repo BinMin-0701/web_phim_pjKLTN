@@ -40,11 +40,17 @@ Route::post('/add-rating', [IndexController::class, 'add_rating'])->name('add-ra
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register']);
 
+Route::get('/register', [RegisterController::class, 'index']);
 
 // Tìm kiếm phim
 Route::get('/tim-kiem', [IndexController::class, 'timkiem'])->name('tim-kiem');
 
 Auth::routes();
+
+//đăng nhập user
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login_home', [LoginController::class, 'post_login']);
+Route::get('/logout_user',[LoginController::class, 'logout_user']);
 
 
 //Đăng nhập admin

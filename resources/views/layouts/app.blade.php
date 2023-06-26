@@ -496,10 +496,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li>
                 <li>
                   <!-- <a href="#"><i class="fa fa-sign-out"></i> Logout</a> -->
-                  <form action="{{route('logout')}}" method="POST" class="text-center">
-                    @csrf
-                    <input type="submit" class="btn btn-danger btn-sm" value="LOGOUT">
-                  </form>
+                 <a href="/logout_user">Đăng xuất</a>
                 </li>
               </ul>
             </li>

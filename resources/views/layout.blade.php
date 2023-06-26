@@ -139,9 +139,13 @@
 
             </ul>
           </div>
-          <ul class="nav navbar-nav navbar-left" >
+          <ul class="nav navbar-nav navbar-left">
             <li><a href="#" onclick="locphim()">Lọc Phim</a></li>
-            <li><a href="./login" onclick="locphim()" style="color: #ffed4d;background:#000;">Đăng nhập</a></li>
+            @if(!Auth::check())
+            <li><a href="./login" style="color: #ffed4d;background:#000;">Đăng nhập</a></li>
+            @else
+            <li><a href="./logout_user" style="color: #ffed4d;background:#000;">{{ Auth::user()->name }} - Đăng xuất</a></li>
+            @endif
           </ul>
         </div>
       </nav>
@@ -484,7 +488,8 @@
 
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }, success: function(data) {
+        },
+        success: function(data) {
           if (data == 'done') {
             alert("Bạn đã đánh giá " + index + " trên 5");
             location.reload();

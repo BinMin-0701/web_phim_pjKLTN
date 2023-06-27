@@ -44,14 +44,23 @@
               <!-- Nếu mà có tập phim->chiếu tập phim mới nhất -->
               <!-- Chiếu phim -->
               @if ($movie->resolution!='5')
-                @if ($episode_current_list_count>0)
-                <div class="bwa-content">
-                  <div class="loader"></div>
-                  <a href="{{url('xem-phim/'.$movie->slug.'/tap-'.$episode_tapdau->episode)}}" class="bwac-btn">
-                    <i class="fa fa-play"></i>
-                  </a>
-                </div>
+              @if ($episode_current_list_count>0)
+              <div class="bwa-content">
+                @if($movie->premium == 1)
+                @if(Auth::check() && Auth::user()->level == 2)
+                <div class="loader"></div>
+                <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_tapdau->episode) }}" class="bwac-btn">
+                  <i class="fa fa-play"></i>
+                </a>
                 @endif
+                @else
+                <div class="loader"></div>
+                <a href="{{ url('xem-phim/'.$movie->slug) }}" class="bwac-btn">
+                  <i class="fa fa-play"></i>
+                </a>
+                @endif
+              </div>
+              @endif
               @if(isset($episode->movie))
               @endif
               <!-- Không có link phim/tập phim->xem trailer -->
@@ -127,12 +136,16 @@
                   Đang cập nhật
                   @endif
                 </li>
-                <li class="list-info-group-item"><span>Lượt xem: </span> 
+                <li class="list-info-group-item"><span>Lượt xem: </span>
                   @if($movie->count_views > 0)
-                    {{$movie->count_views}} lượt xem
+                  {{$movie->count_views}} lượt xem
                   @endif
                 </li>
-                
+                @if($movie->premium == 1)
+                <li class="list-info-group-item"><span>Note: </span>
+                  Premium
+                </li>
+                @endif
               </ul>
               </li>
               </ul>

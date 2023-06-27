@@ -107,7 +107,6 @@
                   @if ($episode->server==$ser->id)
                   <li class="halim-episode"><span class="halim-btn halim-btn-2 halim-info-1-1 box-shadow">{{$ser->title}}</span></li>
                   @endif
-
                   @endforeach
                 </ul>
                 <ul class="halim-list-eps">
@@ -117,19 +116,19 @@
                       <span class="halim-btn halim-btn-2 {{$tapphim==$sotap->episode ? 'active':''}} halim-info-1-1 box-shadow" data-post-id="37976" data-server="1" data-episode="1" data-position="first" data-embed="0" data-title="Xem phim {{$movie->title}} - Tập {{$sotap->epispde}} - vietsub + Thuyết Minh" data-h1="{{$movie->title}} - tập {{$sotap->episode}}">
                         <!-- Nếu như là phim lẻ thì sẽ hiển thị ra định dạng của phim -->
                         @if ($movie->thuocphim=='phimle')
-                          @if($movie->resolution==0)
-                          HD
-                          @elseif ($movie->resolution==1)
-                          SD
-                          @elseif ($movie->resolution==2)
-                          HDCam
-                          @elseif ($movie->resolution==3)
-                          Cam
-                          @elseif ($movie->resolution==4)
-                          FullHD
-                          @else
-                          Trailer
-                          @endif
+                        @if($movie->resolution==0)
+                        HD
+                        @elseif ($movie->resolution==1)
+                        SD
+                        @elseif ($movie->resolution==2)
+                        HDCam
+                        @elseif ($movie->resolution==3)
+                        Cam
+                        @elseif ($movie->resolution==4)
+                        FullHD
+                        @else
+                        Trailer
+                        @endif
                         @else
                         <!-- Nếu là phim bộ sẽ hiển thị ra danh sách số tập phim -->
                         {{$sotap->episode}}

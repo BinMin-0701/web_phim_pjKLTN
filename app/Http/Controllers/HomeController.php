@@ -34,6 +34,7 @@ class HomeController extends Controller
         return view('home');
     }
 
+    //Thanh toán premium
     public function pay_premium()
     {
         $user_id = Auth::user()->id;
@@ -43,7 +44,7 @@ class HomeController extends Controller
         $new_payment->total = 500000; // Phần này chỉnh sửa lại để admin có thể chỉnh sửa được giá pre
         $new_payment->date = Carbon::now();
         $new_payment->save();
-        $total = (float) $new_payment->total;
+        $total = (double) $new_payment->total;
 
         $data_url = VNPay::vnpay_create_payment([
             'vnp_TxnRef' => $new_payment->id,
@@ -71,7 +72,7 @@ class HomeController extends Controller
 
                 // //Gửi email:
 
-                return redirect('pages/result')->with('notification', 'Bạn đã thanh toán thành công tài khoản premium.');
+                return redirect('accout/'.Auth::user()->id)->with('notification', 'Bạn đã thanh toán thành công tài khoản premium.');
             } else {
                 //Nếu không thành công
                 //Xóa dữ liệu dã thêm vào database
@@ -81,7 +82,7 @@ class HomeController extends Controller
                 }
 
                 //Thông báo lỗi
-                return redirect('pages/result')->with('notification', 'ERROR! Thanh toán không thành công hoặc bị hủy.');
+                return redirect('accout/'.Auth::user()->id)->with('notification', 'ERROR! Thanh toán không thành công hoặc bị hủy.');
             }
         }
     }

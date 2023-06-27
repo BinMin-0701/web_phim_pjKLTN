@@ -92,6 +92,6 @@ class RegisterController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
 
-        return redirect()->route('login')->with('success', 'Đăng ký thành công. Vui lòng đăng nhập để tiếp tục.');
+        return redirect('login')->with('success', 'Đăng ký thành công. Vui lòng đăng nhập để tiếp tục.');
     }
 }

@@ -30,6 +30,12 @@
       <button type="submit" class="btn btn-success">Nâng cấp tài khoản</button>
     </form>
     @endif
+    @if(session('notification'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+      {{ session('notification') ?? 'Chưa có giao dịch nào!' }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    @endif
   </div>
 </div>
 @endsection

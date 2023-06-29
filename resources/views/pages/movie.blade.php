@@ -47,12 +47,12 @@
               @if ($episode_current_list_count>0)
               <div class="bwa-content">
                 @if($movie->premium == 1)
-                  @if(Auth::check() && Auth::user()->level == 2)
-                    <div class="loader"></div>
-                    <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_tapdau->episode) }}" class="bwac-btn">
-                      <i class="fa fa-play"></i>
-                    </a>
-                  @endif
+                @if(Auth::check() && Auth::user()->level == 2)
+                <div class="loader"></div>
+                <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_tapdau->episode) }}" class="bwac-btn">
+                  <i class="fa fa-play"></i>
+                </a>
+                @endif
                 @else
                 <div class="loader"></div>
                 <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_tapdau->episode) }}" class="bwac-btn">
@@ -129,8 +129,21 @@
                   <a href="{{url('xem-phim/'.$ep->movie->slug.'/tap-'.$ep->episode)}}" rel="{{$ep->spisode}}">Tập {{$ep->episode}}</a>
                   @endforeach
                   @else
-                  <a href="" rel="">FullHD</a>
-                  <a href="" rel="">HD</a>
+                  <span class="quality">
+                    @if($movie->resolution==0)
+                    HD
+                    @elseif ($movie->resolution==1)
+                    SD
+                    @elseif ($movie->resolution==2)
+                    HDCam
+                    @elseif ($movie->resolution==3)
+                    Cam
+                    @elseif ($movie->resolution==4)
+                    FullHD
+                    @else
+                    Trailer
+                    @endif
+                  </span>
                   @endif
                   @else
                   Đang cập nhật

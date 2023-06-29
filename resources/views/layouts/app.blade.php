@@ -1391,7 +1391,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     }
   </script>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     $('.order_position').sortable({
       placeholder: 'ui-state-highlight',
       update: function(event, ui) {
@@ -1414,7 +1414,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         })
       }
     })
-  </script>
+  </script> -->
 
   <!-- Thay đổi năm phim Admin -->
   <script>

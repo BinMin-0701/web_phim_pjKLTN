@@ -220,7 +220,7 @@ class MovieController extends Controller
     $movie->ngaycapnhat = Carbon::now('Asia/Ho_Chi_Minh');
     $movie->thoiluong = $data['thoiluong'];
     $movie->count_views = 0;
-    $movie->premium = 1;
+    $movie->premium = 0;
     
     foreach($data['genre'] as $key => $gen) {
       $movie->genre_id = $gen[0];

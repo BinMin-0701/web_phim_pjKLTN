@@ -47,7 +47,7 @@
               @if ($episode_current_list_count>0)
               <div class="bwa-content">
                 @if($movie->premium == 1)
-                @if(Auth::check() && Auth::user()->level == 2)
+                @if(Auth::check() && Auth::user()->level == 2 || Auth::user()->level == 0)
                 <div class="loader"></div>
                 <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_tapdau->episode) }}" class="bwac-btn">
                   <i class="fa fa-play"></i>

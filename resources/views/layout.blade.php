@@ -53,8 +53,7 @@
     <div class="container">
       <div class="row" id="headwrap">
         <div class="col-md-3 col-sm-6 slogan">
-          <p class="site-title"><a class="logo" href="" title="phim hay ">Phim Hay</p>
-          </a>
+          <a class="navbar-brand" href="/"><span class="fa fa-area-chart"></span>Phim Free</a>
         </div>
         <div class="col-md-5 col-sm-6 halim-search-form hidden-xs">
           <div class="header-nav">

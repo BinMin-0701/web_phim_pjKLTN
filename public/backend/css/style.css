@@ -2143,7 +2143,8 @@ form.search-form {
 }
 
 .login-page input[type="email"],
-.login-page input[type="password"] {
+.login-page input[type="password"],
+.login-page input[type="text"] {
   font-size: 1em;
   padding: 14px 15px 14px 37px;
   width: 100%;

@@ -42,9 +42,9 @@ class EpisodeController extends Controller
   {
     $data = $request->validate(
       [
-        'movie_id' => 'required',
+        'movie_id' => 'required|unique:episodes',
         'link' => 'required',
-        'episode' => 'required|unique:episodes',
+        'episode' => 'required',
         'linkserver' => 'required',
       ],
       [

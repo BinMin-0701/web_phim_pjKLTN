@@ -59,6 +59,14 @@ class MovieController extends Controller
     $movie->topview = $data['topview'];
     $movie->save();
   }
+  
+  public function update_premium(Request $request)
+  {
+    $data = $request->all();
+    $movie = Movie::find($data['id_phim']);
+    $movie->premium = $data['premium'];
+    $movie->save();
+  }
 
   public function filter_topview(Request $request)
   {
@@ -212,6 +220,7 @@ class MovieController extends Controller
     $movie->ngaycapnhat = Carbon::now('Asia/Ho_Chi_Minh');
     $movie->thoiluong = $data['thoiluong'];
     $movie->count_views = 0;
+    $movie->premium = 1;
     
     foreach($data['genre'] as $key => $gen) {
       $movie->genre_id = $gen[0];

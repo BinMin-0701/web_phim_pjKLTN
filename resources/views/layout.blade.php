@@ -142,9 +142,9 @@
           <ul class="nav navbar-nav navbar-left">
             <li><a href="#" onclick="locphim()">Lọc Phim</a></li>
             @if(!Auth::check())
-            <li><a href="./login" style="color: #ffed4d;background:#000;">Đăng nhập</a></li>
+            <li><a href="{{route('login')}}" style="color: #ffed4d;background:#000;">Đăng nhập</a></li>
             @else
-            <li><a href="./logout_user" style="color: #ffed4d;background:#000;">{{ Auth::user()->name }} - Đăng xuất</a></li>
+            <li><a href="{{route('logout_user')}}" style="color: #ffed4d;background:#000;">{{ Auth::user()->name }} - Đăng xuất</a></li>
             <li><a href="{{route('accout', Auth::user()->id)}}" style="color: #ffed4d;background:#000;">Tài khoản</a></li>
             @endif
           </ul>

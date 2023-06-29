@@ -47,15 +47,15 @@
               @if ($episode_current_list_count>0)
               <div class="bwa-content">
                 @if($movie->premium == 1)
-                @if(Auth::check() && Auth::user()->level == 2)
-                <div class="loader"></div>
-                <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_tapdau->episode) }}" class="bwac-btn">
-                  <i class="fa fa-play"></i>
-                </a>
-                @endif
+                  @if(Auth::check() && Auth::user()->level == 2)
+                    <div class="loader"></div>
+                    <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_tapdau->episode) }}" class="bwac-btn">
+                      <i class="fa fa-play"></i>
+                    </a>
+                  @endif
                 @else
                 <div class="loader"></div>
-                <a href="{{ url('xem-phim/'.$movie->slug) }}" class="bwac-btn">
+                <a href="{{ url('xem-phim/'.$movie->slug.'/tap-'.$episode_tapdau->episode) }}" class="bwac-btn">
                   <i class="fa fa-play"></i>
                 </a>
                 @endif
@@ -143,7 +143,7 @@
                 </li>
                 @if($movie->premium == 1)
                 <li class="list-info-group-item"><span>Note: </span>
-                  Premium
+                  Nâng cấp tài khoản để xem phim Premium
                 </li>
                 @endif
               </ul>

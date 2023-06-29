@@ -43,7 +43,7 @@ class VNPay
 
         $vnp_TxnRef = $data['vnp_TxnRef']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = $data['vnp_OrderInfo'];
-        $vnp_OrderType = 100000; // Loại hàng hóa: Thực Phẩm - Tiêu Dùng (Xem thêm mã tại: https://sandbox.vnpayment.vn/apis/docs/loai-hang-hoa)
+        $vnp_OrderType = 100000; // Loại hàng hóa: Thực Phẩm - Tiêu Dùng 
         $vnp_Amount = $data['vnp_Amount'] * 100;
         $vnp_Locale = 'vn'; //Ngôn ngữ tiếng việt
 //        $vnp_BankCode = $_POST['bank_code'];

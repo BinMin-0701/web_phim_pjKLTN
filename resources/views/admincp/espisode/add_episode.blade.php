@@ -69,7 +69,6 @@
       <th scope="col">Tập</th>
       <th scope="col">Link phim</th>
       <th scope="col">Server</th>
-      <th scope="col">Trạng thái</th>
       <th scope="col">Quản lý</th>
     </tr>
   </thead>
@@ -87,13 +86,6 @@
         {{$server_link->title}}
         @endif
         @endforeach
-      </td>
-      <td>
-        @if($episode->status)
-        Hiển thị
-        @else
-        Không hiển thị
-        @endif
       </td>
       <td style="min-width: 135px;">
         {!! Form::open(['method'=>'DELETE','route'=>['episode.destroy',$episode->id],'onsubmit'=>'return confirm("Bạn có chắc muốn xóa?")','style'=>'display: inline-block;']) !!}

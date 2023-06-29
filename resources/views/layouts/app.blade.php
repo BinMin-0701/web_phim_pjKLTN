@@ -248,6 +248,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                   </li>
                 </ul>
               </li>
+
+              <!-- Account -->
+              <li class="treeview {{($segment=='account') ? 'active' : ''}}">
+                <a href="#">
+                  <i class="fa fa-film"></i>
+                  <span>Tài khoản</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li>
+                    <a href="{{route('account.create')}}"><i class="fa fa-angle-right"></i>Thêm Tài khoản</a>
+                  </li>
+                  <li>
+                    <a href="{{route('account.index')}}"><i class="fa fa-angle-right"></i>Danh sách Tài khoản</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </div>
           <!-- /.navbar-collapse -->
@@ -496,7 +513,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </li>
                 <li>
                   <!-- <a href="#"><i class="fa fa-sign-out"></i> Logout</a> -->
-                 <a href="/logout_user">Đăng xuất</a>
+                  <a href="/logout_user">Đăng xuất</a>
                 </li>
               </ul>
             </li>
@@ -549,15 +566,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               </div>
             </div>
           </div>
-          <!-- <div class="col-md-3 widget">
+          <div class="col-md-3 widget">
             <div class="r3_counter_box">
               <i class="pull-left fa fa-users dollar2 icon-rounded"></i>
               <div class="stats">
-                <h5><strong>1450</strong></h5>
-                <span>Total Users</span>
+                <h5><a href="{{route('account.index')}}"><strong>{{$account_total}}</strong></a></h5>
+                <span>Tài khoản</span>
               </div>
             </div>
-          </div> -->
+          </div>
           <div class="clearfix"></div>
         </div>
         <!-- for amcharts js -->
@@ -1442,23 +1459,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
   <!-- Thay đổi Top View admin Ngày/Tuần/Tháng -->
   <script>
-    $('.select-topview').change(function() {
-      var topview = $(this).find(':selected').val();
+    $('.select-premium').change(function() {
+      var premium = $(this).find(':selected').val();
       var id_phim = $(this).attr('id');
-      if (topview == 0) {
-        var text = 'Ngày';
-      } else if (topview == 1) {
-
+      if (premium == 0) {
+        var text = 'Phim Thường';
+      } else if (premium == 1) {
+        var text = "Phim Premium"
       }
       $.ajax({
-        url: "{{url('/update-year-phim')}}",
+        url: "{{url('/update-premium')}}",
         method: "GET",
         data: {
-          year: year,
+          premium: premium,
           id_phim: id_phim
         },
         success: function() {
-          alert('Thay đổi năm phim theo năm ' + year + ' thành công');
+          alert('Thay đổi phim thành ' + text + ' thành công');
         }
       });
     })

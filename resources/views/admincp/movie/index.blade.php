@@ -28,7 +28,7 @@
             <!-- <th scope="col">Ngày cập nhật</th> -->
             <th scope="col">Năm</th>
             <th scope="col">Season</th>
-            <th scope="col">Top view</th>
+            <th scope="col">Premium</th>
             <th scope="col">Quản lý</th>
           </tr>
         </thead>
@@ -124,7 +124,7 @@
               </form>
             </td>
             <td>
-              {!! Form::select('topview', ['0'=>'Ngày','1'=>'Tuần','2'=>'Tháng'], isset($cate->topview) ? $cate->topview : '', ['class'=>'select-topview','id'=>$cate->id]) !!}
+              {!! Form::select('premium', ['0'=>'Không','1'=>'Có'], isset($cate->premium) ? $cate->premium : '', ['class'=>'select-premium','id'=>$cate->id]) !!}
             </td>
             <td style="    min-width: 135px;">
               {!! Form::open(['method'=>'DELETE','route'=>['movie.destroy',$cate->id],'onsubmit'=>'return confirm("Bạn có chắc muốn xóa?")','style'=>'display: inline-block']) !!}

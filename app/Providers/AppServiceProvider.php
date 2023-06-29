@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\User;
 use Symfony\Polyfill\Intl\Idn\Info;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -40,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
     $genre_total = Genre::all()->count();
     $country_total = Country::all()->count();
     $movie_total = Movie::all()->count();
+    $account_total = User::all()->count();
 
     // $info = Info::find(1);
 
@@ -56,6 +58,7 @@ class AppServiceProvider extends ServiceProvider
       'genre_total' => $genre_total,
       'country_total' => $country_total,
       'movie_total' => $movie_total,
+      'account_total' => $account_total,
     ]);
   }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -50,9 +51,9 @@ Route::get('/tim-kiem', [IndexController::class, 'timkiem'])->name('tim-kiem');
 Auth::routes();
 
 //đăng nhập user
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login_home', [LoginController::class, 'post_login']);
-Route::get('/logout_user',[LoginController::class, 'logout_user']);
+Route::get('/logout_user',[LoginController::class, 'logout_user'])->name('logout_user');
 Route::post('/pay_premium',[HomeController::class, 'pay_premium']);
 Route::get('/pages/result',[HomeController::class, 'result']);
 Route::get('/vnPayCheck', [HomeController::class, 'vnPayCheck']);
@@ -70,6 +71,7 @@ Route::post('resorting', [CategoryController::class,'resorting'])->name('resorti
 Route::resource('genre', GenreController::class)->middleware('CheckAdminLogin');
 Route::resource('country', CountryController::class)->middleware('CheckAdminLogin');
 Route::resource('linkmovie', LinkMovieController::class)->middleware('CheckAdminLogin');
+Route::resource('account', AccountController::class)->middleware('CheckAdminLogin');
 // them tập phim
 Route::get('add-episode/{id}', [EpisodeController::class, 'add_episode'])->name('add-episode')->middleware('CheckAdminLogin');
 Route::resource('episode', EpisodeController::class)->middleware('CheckAdminLogin');
@@ -77,8 +79,9 @@ Route::get('select-movie', [EpisodeController::class, 'select_movie'])->name('se
 
 Route::resource('movie', MovieController::class)->middleware('CheckAdminLogin');
 Route::get('/update-year-phim', [MovieController::class, 'update_year'])->middleware('CheckAdminLogin');
-Route::get('/update-topview-phim', [MovieController::class, 'update_topview'])->middleware('CheckAdminLogin');
-Route::get('/filter-topview-phim', [MovieController::class, 'filter_topview'])->middleware('CheckAdminLogin');
-Route::get('/filter-topview-default', [MovieController::class, 'filter_default'])->middleware('CheckAdminLogin');
+// Route::get('/update-topview-phim', [MovieController::class, 'update_topview'])->middleware('CheckAdminLogin');
+// Route::get('/filter-topview-phim', [MovieController::class, 'filter_topview'])->middleware('CheckAdminLogin');
+// Route::get('/filter-topview-default', [MovieController::class, 'filter_default'])->middleware('CheckAdminLogin');
 Route::get('/update-season-phim', [MovieController::class, 'update_season'])->middleware('CheckAdminLogin');
+Route::get('/update-premium', [MovieController::class, 'update_premium'])->middleware('CheckAdminLogin');
 
